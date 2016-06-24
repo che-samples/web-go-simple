@@ -1,0 +1,81 @@
+{
+  "v": "4.0",
+  "workspace": {
+    "defaultEnv": "ubuntu_go",
+    "environments": [
+      {
+        "name": "ubuntu_go",
+        "machineConfigs": [
+          {
+            "limits": {
+              "ram": 1000
+            },
+            "name": "ws-machine",
+            "type": "docker",
+            "source": {
+              "type": "dockerfile",
+              "content": "FROM codenvy/ubuntu_go"
+            },
+            "dev": true,
+            "servers": [],
+            "envVariables": {},
+            "links": []
+          }
+        ]
+      }
+    ],
+    "projects": [
+      {
+        "links": [],
+        "name": "web-go-simple",
+        "attributes": {
+          "contribute_to_branch": [
+            "master"
+          ]
+        },
+        "type": "blank",
+        "source": {
+          "location": "https://github.com/che-samples/web-go-simple.git",
+          "type": "git",
+          "parameters": {}
+        },
+        "path": "/web-go-simple",
+        "problems": [],
+        "mixins": [
+          "pullrequest"
+        ]
+      }
+    ],
+    "name": "ubuntu_go",
+    "commands": [
+      {
+        "commandLine": "cd ${current.project.path} && go get -d && go run main.go",
+        "name": "run",
+        "attributes": {
+          "previewUrl": "http://${server.port.8080}"
+        },
+        "type": "custom"
+      }
+    ],
+    "links": []
+  },
+  "links": [],
+  "ide": {
+    "onProjectsLoaded": {
+      "actions": [
+        {
+          "properties": {
+            "name": "run"
+          },
+          "id": "runCommand"
+        },
+        {
+          "properties": {
+            "file": "/web-go-simple/main.go"
+          },
+          "id": "openFile"
+        }
+      ]
+    }
+  }
+}
